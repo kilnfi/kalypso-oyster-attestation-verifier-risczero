@@ -3,8 +3,6 @@
 target/
 .env
 .env*
-kalypso-attestation-*
-kalypso-cli-*
 
 Dockerfile
 Dockerfile*
