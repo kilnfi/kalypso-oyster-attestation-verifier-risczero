@@ -153,6 +153,14 @@ check_docker() {
     else
         echo "Docker is already installed."
     fi
+
+    if ! docker buildx version >/dev/null 2>&1; then
+        echo "Docker Buildx is not installed. Please install Docker Buildx."
+        echo "Visit https://docs.docker.com/buildx/working-with-buildx/ for installation instructions."
+        exit 1
+    else
+        echo "Docker Buildx is already installed."
+    fi
 }
 
 # Function to install Rust
