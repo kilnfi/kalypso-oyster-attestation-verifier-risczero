@@ -18,7 +18,6 @@ async fn main() -> std::io::Result<()> {
     env_var!(generator, "GENERATOR_ADDRESS");
     env_var!(gas_key, "GAS_KEY");
     env_var!(market_id, "MARKET_ID");
-    env_var!(http_rpc_url, "HTTP_RPC_URL");
     env_var!(proof_market_place, "PROOF_MARKETPLACE_ADDRESS");
     env_var!(generator_registry, "GENERATOR_REGISTRY_ADDRESS");
     env_var!(start_block, "START_BLOCK");
@@ -27,6 +26,11 @@ async fn main() -> std::io::Result<()> {
     env_var!(ivs_url, "IVS_URL");
     env_var!(prover_url, "PROVER_URL");
     env_var!(polling_interval, "POLLING_INTERVAL");
+
+    let http_rpc_url = std::env::var("HTTP_RPC_URL")
+        .or_else(|_| std::env::var("RPC_URL"))
+        .expect("HTTP_RPC_URL or RPC_URL is not set");
+
 
     let mut handles = vec![];
 

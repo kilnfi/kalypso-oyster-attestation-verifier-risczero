@@ -90,7 +90,7 @@ export GENERATOR_REGISTRY_ADDRESS="0xEcF45b1272D3B0ed2eB2A3c85b1E4bBa8a3611D6"
 export ENTITY_KEY_REGISTRY_ADDRESS="0x9C0Da9ac6B563A87CAf6F5b49f58f3C6D8D9BDef"
 export START_BLOCK="299397777"
 export MARKET_ID="1"
-export INDEXER_URL="https://todo.indexer"
+export INDEXER_URL="https://indexer.kalypso.org"
 
 export STAKING_TOKEN="0xdA0a57B710768ae17941a9Fa33f8B720c8bD9ddD"
 export PAYMENT_TOKEN="0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
@@ -158,14 +158,16 @@ case "$OPERATION" in
   test-connection)
     echo "Testing network connection..."
     # Add your connection test commands below
-    ./test-connection --url "http://3.110.146.109:1500/attestation/raw" &
+    # ./test-connection --url "http://3.110.146.109:1500/attestation/raw" &
+    ./test-connection --url "https://attestation.ivs.kalypso.org/attestation/raw" &
     HOST_PID=$!
     wait "$HOST_PID"
     ;;
   
   run-prover)
     export MAX_PARALLEL_PROOFS="1"
-    export IVS_URL="http://3.110.146.109:3030"
+    # export IVS_URL="http://3.110.146.109:3030"
+    export IVS_URL="https://verification.ivs.nitro.kalypso.org"
     export PROVER_URL="http://localhost:3030/api/generateProof"
     export POLLING_INTERVAL=10000
     
