@@ -55,7 +55,9 @@ fn main() {
     let journal = receipt.journal.bytes;
 
     println!("Seal with prefix: {}", hex::encode(&seal_with_prefix));
-
+    println!("Image Id: {}", hex::encode(&image_id));
+    println!("journal: {}", hex::encode(&journal));
+    
     let value = vec![
         ethers::abi::Token::Bytes(seal_with_prefix),
         ethers::abi::Token::FixedBytes(image_id.to_vec()),
