@@ -192,7 +192,7 @@ case "$OPERATION" in
 
   native-stake)
     echo "Native Staking"
-    export NATIVE_STAKING_ADDRESS="0x7F2586176ed24A045Cc2D769c64402f275D97DCF"
+    export NATIVE_STAKING_ADDRESS="0xd96418F0507F992E2a33942e54FA832ba3d2287e"
 
     OPERATION_NAME="Native Stake" ./kalypso-cli &
     NAT_PID=$!
