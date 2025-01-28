@@ -94,6 +94,7 @@ export INDEXER_URL="https://indexer.kalypso.org"
 
 export STAKING_TOKEN="0xdA0a57B710768ae17941a9Fa33f8B720c8bD9ddD"
 export PAYMENT_TOKEN="0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+export NATIVE_STAKING_ADDRESS="0xd96418F0507F992E2a33942e54FA832ba3d2287e"
 
 # Execute based on the selected operation
 case "$OPERATION" in
@@ -192,7 +193,6 @@ case "$OPERATION" in
 
   native-stake)
     echo "Native Staking"
-    export NATIVE_STAKING_ADDRESS="0xd96418F0507F992E2a33942e54FA832ba3d2287e"
 
     OPERATION_NAME="Native Stake" ./kalypso-cli &
     NAT_PID=$!
