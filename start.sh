@@ -159,7 +159,7 @@ case "$OPERATION" in
     echo "Testing network connection..."
     # Add your connection test commands below
     # ./test-connection --url "http://3.110.146.109:1500/attestation/raw" &
-    ./test-connection --url "https://attestation.ivs.kalypso.org/attestation/raw" &
+    ./test-connection --url "https://attestation.ivs.nitro.kalypso.org/attestation/raw" &
     HOST_PID=$!
     wait "$HOST_PID"
     ;;
