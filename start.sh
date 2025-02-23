@@ -166,7 +166,7 @@ case "$OPERATION" in
   run-prover)
     export MAX_PARALLEL_PROOFS="1"
     export IVS_URL="http://3.110.146.109:3030"
-    export PROVER_URL="http://localhost:3030/api/generateProof"
+    export PROVER_PORT=3031
     export POLLING_INTERVAL=10000
     
     echo "Executing the prover service..."

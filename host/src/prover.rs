@@ -25,11 +25,12 @@ async fn main() -> std::io::Result<()> {
     env_var!(chain_id, "CHAIN_ID");
     env_var!(max_parallel_proofs, "MAX_PARALLEL_PROOFS");
     env_var!(ivs_url, "IVS_URL");
-    env_var!(prover_url, "PROVER_URL");
+    env_var!(prover_port, "PROVER_PORT");
     env_var!(polling_interval, "POLLING_INTERVAL");
 
     let mut handles = vec![];
 
+    let prover_port: u16 = prover_port.parse().unwrap_or(3031);
     let handle_1 = tokio::spawn(async move {
         let start_block: u64 = start_block.parse().expect("Can not parse start_block");
         let chain_id: u64 = chain_id.parse().expect("Can not parse chain _id");
@@ -50,7 +51,7 @@ async fn main() -> std::io::Result<()> {
                 generator_registry.into(),
                 start_block,
                 chain_id,
-                prover_url,
+                format!("http://localhost:{}/api/generateProof", prover_port),
                 ivs_url,
                 false,
                 max_parallel_proofs,
@@ -63,7 +64,7 @@ async fn main() -> std::io::Result<()> {
     });
     handles.push(handle_1);
 
-    let handle_2 = tokio::spawn(server::ProvingServer::new(3030 as u16).start_server());
+    let handle_2 = tokio::spawn(server::ProvingServer::new(prover_port).start_server());
     handles.push(handle_2);
 
     for handle in handles {
