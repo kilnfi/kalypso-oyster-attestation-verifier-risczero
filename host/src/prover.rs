@@ -27,10 +27,13 @@ async fn main() -> std::io::Result<()> {
     env_var!(ivs_url, "IVS_URL");
     env_var!(prover_port, "PROVER_PORT");
     env_var!(polling_interval, "POLLING_INTERVAL");
+    env_var!(prometheus_port, "PROMETHEUS_PORT");
 
     let mut handles = vec![];
 
-    let prover_port: u16 = prover_port.parse().unwrap_or(3031);
+    let prover_port: u16 = prover_port.parse().unwrap_or(2020);
+    let prometheus_port: u16 = prometheus_port.parse().unwrap_or(8888);
+
     let handle_1 = tokio::spawn(async move {
         let start_block: u64 = start_block.parse().expect("Can not parse start_block");
         let chain_id: u64 = chain_id.parse().expect("Can not parse chain _id");
@@ -56,7 +59,7 @@ async fn main() -> std::io::Result<()> {
                 false,
                 max_parallel_proofs,
                 false,
-                9999,
+                prometheus_port,
                 polling_interval.parse()?,
             );
 
